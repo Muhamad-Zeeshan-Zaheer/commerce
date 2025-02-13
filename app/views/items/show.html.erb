@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-center align-items-center">
+  <div class="card" style="width: 18rem ">
+      <% if @item.image.attached? %>
+          <%= image_tag url_for(@item.image), height: "50px", width: "50px" %>
+      <% else %>
+        No image
+      <% end %>
+    <div class="card-body">
+      <h5 class="card-title">Cart item</h5>
+      <h6><%=@item.name%><h6>
+      <p><%=@item.description%></p>
+      <p><%=@item.category&.name%></p>
+      <p class="card-text"></p>
+      <%=link_to "Buy Now", class: " btn btn-primary"%>
+    </div>
+  </div>
+</div>
