@@ -1,4 +1,5 @@
 source "https://rubygems.org"
+gem 'dotenv', groups: [:development, :test]
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.2", ">= 7.2.2.1"
@@ -52,6 +53,8 @@ group :development do
   # Highlight the fine-grained location where an error occurred [https://github.com/ruby/error_highlight]
   gem "error_highlight", ">= 0.4.0", platforms: [ :ruby ]
 end
+
+gem 'stripe'
 
 gem "bootstrap"
 gem "sassc-rails"

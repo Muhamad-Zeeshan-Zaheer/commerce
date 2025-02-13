@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    #it is use to get the single item 
     @item=Item.find(params[:id])
   end
 
