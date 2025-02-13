@@ -5,6 +5,10 @@ class ItemsController < ApplicationController
     @items=Item.all
   end
 
+  def show
+    @item=Item.find(params[:id])
+  end
+
   def new
     #this is used to give the form of the items
     @item=Item.new
