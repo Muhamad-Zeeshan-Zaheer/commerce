@@ -1,17 +1,59 @@
 <div class="d-flex justify-content-center align-items-center">
-  <div class="card" style="width: 18rem ">
-      <% if @item.image.attached? %>
-          <%= image_tag url_for(@item.image), height: "50px", width: "50px" %>
-      <% else %>
-        No image
-      <% end %>
+  <div class="card" style="width: 18rem">
+    <% if @item.image.attached? %>
+      <%= image_tag url_for(@item.image), height: "50px", width: "50px" %>
+    <% else %>
+      No image
+    <% end %>
+
     <div class="card-body">
-      <h5 class="card-title">Cart item</h5>
-      <h6><%=@item.name%><h6>
-      <p><%=@item.description%></p>
-      <p><%=@item.category&.name%></p>
-      <p class="card-text"></p>
-      <%=link_to "Buy Now", class: " btn btn-primary"%>
+  <h5 class="card-title">Cart item</h5>
+  <h6><%= @item.name %></h6>
+  <p><%= @item.description %></p>
+  <p><%= @item.category&.name %></p>
+  <button type="button" id="buy-now" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
+    Buy Now
+  </button>      
+
+  <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel">Enter Your Payment Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="payment-form">
+            <input type="hidden" id="item-id" name="item_id" value="<%= @item.id %>">
+            <input type="hidden" id="item-price" name="item_price" value="<%= @item.price %>">
+            <div class="mb-3">
+              <label for="email" class="col-form-label">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your Email" required>
+            </div>
+            <div class="mb-3">
+              <label for="card-number" class="col-form-label">Card Number:</label>
+              <input type="text" class="form-control" id="card-number" placeholder="4242 4242 4242 4242" required>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="card-expiry" class="col-form-label">Expiration Date:</label>
+                <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="card-cvc" class="col-form-label">CVC:</label>
+                <input type="text" class="form-control" id="card-cvc" placeholder="CVC" required>
+              </div>
+            </div>
+
+            <div id="card-errors" class="text-danger mt-2" role="alert"></div>
+
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary text-end">Submit Payment</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

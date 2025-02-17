@@ -1,0 +1,23 @@
+{
+  "name": "Commerce",
+  "short_name": "Commerce",
+  "description": "A commerce application",
+  "start_url": "/",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#ff0000",
+  "background_color": "#ff0000",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

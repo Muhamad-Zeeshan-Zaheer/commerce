@@ -6,8 +6,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    #it is use to get the single item 
+    #it is use to get the single item
     @item=Item.find(params[:id])
+    stripe=StripeService.new
   end
 
   def new
