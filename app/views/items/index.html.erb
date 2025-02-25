@@ -12,7 +12,12 @@
       <th scope="col">Name</th>
       <th scope="col">Price</th>
       <th scope="col">Category</th>
-      <th scope="col">Action</th>
+      <%if current_user.user_type=="Customer"%>
+            <th scope="col">Expiry Date</th>
+
+      <%end%>   
+      <th scope="col">Action</th>   
+      
     </tr>
   </thead>
   <tbody>
@@ -38,6 +43,7 @@
                 }, class: "btn btn-danger" %>
           </td>
         <% else %>
+            <td><%= item.expires_on.to_date.strftime("%d-%m-%Y") if item.expires_on.present? %></td>
           <td>
             <%= link_to "Add to cart", item_path(item), class: "btn btn-primary"%>
           </td>

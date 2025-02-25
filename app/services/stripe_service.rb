@@ -1,8 +1,6 @@
-require 'stripe'
-
 class StripeService
   def initialize
-    Stripe.api_key = ENV['Secret_key']
+    Stripe.api_key = ENV['Secret_key']  # Use your secret key
   end
 
   def find_or_create_customer(customer)
@@ -14,13 +12,15 @@ class StripeService
     end
     stripe_customer
   end
-  def stripe_charge(item_id, stripe_customer_id, card_id)
-    item = Item.find(item_id) 
-    amount = (item.price * 10
+
+  def stripe_charge(item_id, stripe_customer_id, token)
+    item = Item.find(item_id)
+    amount = (item.price * 100).to_i # Stripe expects amount in cents
+
     Stripe::Charge.create({
       amount: amount,
       currency: 'usd',
-      source: card_id,
+      source: token,
       customer: stripe_customer_id
     })
   end
